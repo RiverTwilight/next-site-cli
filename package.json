@@ -8,7 +8,8 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"bin": {
-		"next-site-cli": "index.js"
+		"next-site-cli": "index.js",
+		"nsc": "index.js"
 	},
 	"author": "",
 	"license": "MIT",
