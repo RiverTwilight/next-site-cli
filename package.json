@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "Quickly generate a full-equipped morden nextJS site.",
 	"main": "index.js",
+	"type": "module",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
@@ -15,6 +16,7 @@
 		"commander": "^8.2.0",
 		"download-git-repo": "^3.0.2",
 		"handlebars": "^4.7.7",
-		"inquirer": "^8.1.2"
+		"inquirer": "^8.1.2",
+		"ora": "^6.0.1"
 	}
 }

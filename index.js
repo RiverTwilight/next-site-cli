@@ -1,11 +1,16 @@
 #!/usr/bin/env node
 
-const { program } = require("commander");
-const download = require("download-git-repo");
-const inquirer = require("inquirer");
+import { program } from "commander";
+import download from "download-git-repo";
+import inquirer from "inquirer";
+import ora from "ora";
+import chalk from "chalk";
+import path from "path"
+import fs from "fs"
+import handlebars from "handlebars";
 
-const URL = "RiverTwilight/next-site-template",
-	DOWNLOAD_PATH = "";
+const URL = "direct:https://github.com/RiverTwilight/next-site-template.git",
+	DOWNLOAD_PATH = "./template";
 
 program.version("1.0.0");
 
@@ -15,7 +20,6 @@ program
 	.option("-t, --type,", "")
 	.action((name, opts) => {
 		console.log(name, opts);
-
 		inquirer
 			.prompt([
 				{
@@ -27,18 +31,21 @@ program
 				// 	message: "请输入项目作者",
 				// 	default: "robot",
 				// },
-				// {
-				// 	name: "type",
-				// 	type: "list",
-				// 	message: "choose a type of project to init",
-				// 	choices: ["react", "vue", "h5"],
-				// 	default: "react",
-				// },
+				{
+					name: "ui",
+					type: "list",
+					message: "choose a type of project to init",
+					choices: ["nav-side", "nav", "empty"],
+					default: "nav-side",
+				},
 			])
-			.then((res) => {
-				console.log(res);
-				download(URL, "./template", { clone: true }, (error) => {
+			.then((param) => {
+				console.log({ name, ...param });
+				const spinner = ora("正在下载模板, 请稍后...");
+				spinner.start();
+				download(URL, DOWNLOAD_PATH, { clone: false }, (error) => {
 					if (!error) {
+						spinner.succeed();
 						const packagePath = path.join(
 							DOWNLOAD_PATH,
 							"package.json"
@@ -55,6 +62,10 @@ program
 						} else {
 							console.log("failed! no package.json");
 						}
+					} else {
+						spinner.fail();
+						console.log(chalk.red("failed! 拉取模板失败", error));
+						return;
 					}
 				});
 			});
