@@ -5,8 +5,8 @@ import download from "download-git-repo";
 import inquirer from "inquirer";
 import ora from "ora";
 import chalk from "chalk";
-import path from "path"
-import fs from "fs"
+import path from "path";
+import fs from "fs";
 import handlebars from "handlebars";
 
 const URL = "direct:https://github.com/RiverTwilight/next-site-template.git",
@@ -32,7 +32,7 @@ program
 				// 	default: "robot",
 				// },
 				{
-					name: "ui",
+					name: "template",
 					type: "list",
 					message: "choose a type of project to init",
 					choices: ["nav-side", "nav", "empty"],
