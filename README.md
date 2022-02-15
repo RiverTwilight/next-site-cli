@@ -29,6 +29,12 @@ cd playground
 next-site-cli
 ```
 
+Each page will pass these params to encouterparted componenets:
+
+-   `page`: the page name
+-   `pagePath`: the page path
+-   `siteConfig`: the site configf
+
 ## References
 
 [Insbiration](https://juejin.cn/post/6914556810129539085)
